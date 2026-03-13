@@ -54,6 +54,13 @@ Minimal replacement
 ```
 ```
 
+Rules:
+
+- Keep this answer placement-first and short.
+- Do not fetch OpenAI docs unless they materially change the placement decision.
+- Do not expand into a full rewrite unless the user asked for one or the current wording itself is the main problem.
+- Do not mention environment restrictions unless they are confirmed in the current session.
+
 ## `AGENTS.md` Rewrite
 
 Use this when refactoring repo guidance.

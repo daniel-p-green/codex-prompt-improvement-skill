@@ -146,8 +146,10 @@ If the skill is not triggering reliably, change routing signals before adding mo
 ## Speed Rules
 
 - For prompt-only rewrites, do not reach for docs unless the claim is model-specific, API-specific, or likely to be stale.
-- For config-placement questions, the config reference is usually enough; avoid extra model-page lookups unless the user explicitly asks for the latest recommendation.
+- For config-placement questions, answer the placement directly. The config reference is usually enough; avoid extra model-page lookups unless the user explicitly asks for the latest recommendation or the placement depends on a current OpenAI-specific detail.
 - Prefer a short placement answer over a long generalized audit when the request is narrow.
+- Do not add environment caveats such as read-only mode or blocked edits unless the current session has already demonstrated that constraint.
+- For analysis-only or rewrite-only requests, do not volunteer whether file edits were possible. Just return the rewrite or recommendation.
 
 ## Good Output Pattern
 

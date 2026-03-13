@@ -18,6 +18,7 @@ Prefer current OpenAI docs over stale prompt cargo-culting. Keep `AGENTS.md` for
 - Responses migration, `phase`, or long-running harness problem: load [references/migration-and-audit-checklist.md](./references/migration-and-audit-checklist.md).
 - Output is inconsistent or the user wants a ready-to-paste result: load [references/output-templates.md](./references/output-templates.md).
 - If the answer depends on current OpenAI model recommendations, GPT-5.4 upgrade guidance, or current API/runtime behavior, use the `openai-docs` skill and treat these bundled references as helper context only.
+- For placement-only requests, decide placement first. Do not fetch current docs unless the placement itself depends on a volatile OpenAI-specific fact.
 - Model, reasoning, profile, permission, or environment default problem: recommend config changes instead of more prompt text.
 - Repeated but still unstable workflow: recommend a skill, not an automation.
 - Stable repeated workflow: recommend skill plus automation if scheduling is useful.
@@ -33,6 +34,7 @@ Prefer current OpenAI docs over stale prompt cargo-culting. Keep `AGENTS.md` for
    Use [references/prompt-and-agent-guidance.md](./references/prompt-and-agent-guidance.md) for prompt or `AGENTS.md` work, [references/runtime-and-tooling.md](./references/runtime-and-tooling.md) for tool/runtime details, [references/migration-and-audit-checklist.md](./references/migration-and-audit-checklist.md) for Responses and harness migration, and [references/output-templates.md](./references/output-templates.md) only when you are drafting the final rewrite or audit output.
 4. Compare the current material against current OpenAI guidance.
    If model choice, GPT-5.4 migration, or OpenAI API/runtime details are material to the answer, invoke `openai-docs` and verify against current docs before finalizing.
+   Skip docs lookups when they do not change the placement or rewrite decision.
    Remove stale or redundant rules instead of preserving them by default.
 5. Produce the rewrite.
    Return concrete replacement text, not just critiques.
@@ -98,6 +100,8 @@ For placement-only requests, return only:
 - Do not make unsupported claims about Codex or the Responses API without checking current docs.
 - Do not answer volatile OpenAI-specific questions from bundled references alone when the `openai-docs` skill can verify them.
 - Do not fetch extra docs just to restate a placement decision already supported by the config or best-practices guidance you loaded.
+- Do not claim the workspace is read-only, that editing is blocked, or that permissions are missing unless a concrete action failed or the environment explicitly proves it.
+- Do not mention whether you could or could not apply edits unless the user asked for file changes or you actually attempted a requested edit.
 - Keep rewrites concise, explicit, and decision-complete.
 
 ## Gotchas
