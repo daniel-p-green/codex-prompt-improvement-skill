@@ -1,6 +1,6 @@
 ---
 name: "codex-prompt-improvement"
-description: "Improve Codex system prompts, AGENTS.md files, and Responses-based Codex harness instructions. Use when rewriting bloated or outdated Codex prompts, migrating GPT-4/o-series or third-party agent harnesses to Codex, auditing tool contracts such as apply_patch or shell usage, or checking commentary/final_answer phase handling in Responses integrations. Do not use for generic copyediting, non-Codex product prompts, or unrelated documentation cleanup."
+description: "Improve Codex system prompts, AGENTS.md files, and Responses-based Codex harness instructions. Use only when the request is specifically about Codex prompt structure, prompt placement, Codex migrations, tool contracts such as apply_patch or shell usage, or commentary/final_answer phase handling in Responses integrations. Do not use for generic copyediting, non-Codex product prompts, or unrelated documentation cleanup, even if the current repo contains Codex skills or docs."
 ---
 
 # Codex Prompt Improvement
@@ -19,6 +19,7 @@ Prefer current OpenAI docs over stale prompt cargo-culting. Keep `AGENTS.md` for
 - Output is inconsistent or the user wants a ready-to-paste result: load [references/output-templates.md](./references/output-templates.md).
 - If the answer depends on current OpenAI model recommendations, GPT-5.4 upgrade guidance, or current API/runtime behavior, use the `openai-docs` skill and treat these bundled references as helper context only.
 - For placement-only requests, decide placement first. Do not fetch current docs unless the placement itself depends on a volatile OpenAI-specific fact.
+- If the request is generic README/docs cleanup or generic prompt writing with no Codex-specific placement, harness, or migration issue, do not use this skill.
 - Model, reasoning, profile, permission, or environment default problem: recommend config changes instead of more prompt text.
 - Repeated but still unstable workflow: recommend a skill, not an automation.
 - Stable repeated workflow: recommend skill plus automation if scheduling is useful.
@@ -85,7 +86,7 @@ For placement-only requests, return only:
 
 - "Improve my Codex system prompt so it stops over-explaining and uses tools better."
 - "Turn this long `AGENTS.md` into tighter Codex instructions."
-- "Migrate this GPT-4 agent harness to `gpt-5.3-codex` on the Responses API."
+- "Migrate this GPT-4 agent harness to the current Codex model on the Responses API."
 - "Audit my Codex tool contract and preamble behavior."
 - "Tighten this `AGENTS.md` so Codex plans complex tasks, uses worktrees for parallel changes, and reviews its own diffs."
 - "Rewrite this Codex prompt so it covers testing, review, and documentation instead of only code generation."
@@ -107,6 +108,7 @@ For placement-only requests, return only:
 ## Gotchas
 
 - If routing is weak, improve the skill name, frontmatter description, and examples before expanding the body.
+- Do not trigger just because the current repository happens to be about Codex prompts or skills; the user still needs a Codex-specific prompt, placement, or harness problem.
 - If the issue is model choice, reasoning effort, permissions, worktree defaults, or profile behavior, prefer config changes over more prompt text.
 - If the workflow is still highly manual or unstable, do not recommend an automation yet.
 - If the repeated workflow is predictable, prefer a skill or MCP-backed flow over a larger universal prompt.
