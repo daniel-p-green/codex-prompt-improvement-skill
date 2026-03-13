@@ -39,6 +39,7 @@ Prefer current OpenAI docs over stale prompt cargo-culting. Keep `AGENTS.md` for
    Remove stale or redundant rules instead of preserving them by default.
 5. Produce the rewrite.
    Return concrete replacement text, not just critiques.
+   When the original prompt is underspecified, vague, or one-sentence, prefer a compact `Goal / Context / Constraints / Done when` structure instead of another one-line prompt, unless the user explicitly asks to preserve the one-line form.
 6. Explain placement.
    Explicitly split recommendations into:
    - keep in prompt
@@ -67,6 +68,7 @@ Return these artifacts when relevant:
 - A placement summary showing what belongs in prompt vs `AGENTS.md` vs skill/reference.
 - Config recommendations when the issue is really model, permissions, profile, or runtime setup.
 - Operational recommendations when needed, such as using Plan mode, worktrees, MCP, skills, or automations instead of more prompt text.
+- When a prompt is too vague, a compact `Goal / Context / Constraints / Done when` rewrite.
 
 For placement-only requests, return only:
 

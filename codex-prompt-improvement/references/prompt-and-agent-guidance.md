@@ -94,6 +94,8 @@ When the prompt is missing structure, default to:
 
 This is often enough to improve reliability without adding a large metaprompt.
 
+When rewriting a vague prompt, prefer returning this structure directly instead of only describing it.
+
 ## Prompt the Full Dev Loop
 
 Many prompt sets over-focus on implementation. When the source material supports it, preserve expectations for:

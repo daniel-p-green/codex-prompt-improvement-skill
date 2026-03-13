@@ -32,6 +32,18 @@ Replacement prompt
 ```
 ```
 
+If the source prompt is vague or underspecified, prefer this compact replacement shape:
+
+```text
+Goal:
+
+Context:
+
+Constraints:
+
+Done when:
+```
+
 ## Placement Audit
 
 Use this when the user mainly wants to know where guidance belongs.
