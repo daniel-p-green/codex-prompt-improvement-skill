@@ -16,14 +16,14 @@ Use $codex-prompt-improvement to analyze this Codex prompt, AGENTS.md file, or h
 - Use it for:
   - bloated Codex system prompts
   - overgrown `AGENTS.md` files
-  - GPT-4/o-series or third-party harness migrations to Codex
-  - Responses runtime audits, especially `commentary` and `final_answer` / `phase` issues
+  - GPT-4/o-series or third-party harness migrations to current Codex patterns
+  - Responses runtime audits, especially `commentary`, `final_answer`, and `phase` issues
 - Do not use it for:
   - generic copyediting
   - non-Codex prompt writing
   - unrelated documentation cleanup
 
-## What it does
+## What it covers
 
 1. Identifies the target surface: prompt, `AGENTS.md`, config, skill, tool schema, or Responses harness.
 2. Classifies the problem before rewriting.
@@ -31,6 +31,15 @@ Use $codex-prompt-improvement to analyze this Codex prompt, AGENTS.md file, or h
 4. Verifies volatile OpenAI-specific claims against current docs.
 5. Returns a concrete rewrite or placement decision.
 6. Splits recommendations into prompt vs `AGENTS.md` vs skill/reference vs config vs remove.
+
+## Workflow
+
+1. Identify the target surface and the desired outcome.
+2. Decide whether the problem is prompt bloat, bad placement, stale guidance, or runtime/tooling drift.
+3. Load only the needed reference file.
+4. Verify current OpenAI-specific claims when model or runtime details materially affect the answer.
+5. Return a concrete rewrite, placement decision, or audit summary.
+6. Separate what belongs in prompt, `AGENTS.md`, skill/reference, config, or nowhere.
 
 ## Output
 
@@ -48,6 +57,15 @@ For placement-only requests, it stays narrow:
 - short why
 - minimal replacement text or config snippet only if needed
 
+## Quality rules
+
+- Keep the active prompt small and task-specific.
+- Prefer `AGENTS.md` for durable repo rules.
+- Prefer config for model, reasoning, approval, sandbox, and profile defaults.
+- Prefer skills or references for repeatable workflows and dense guidance.
+- Verify volatile OpenAI-specific claims against current docs instead of relying on bundled text.
+- Return usable replacement text, not critique alone.
+
 ## Repo layout
 
 - [`codex-prompt-improvement/SKILL.md`](./codex-prompt-improvement/SKILL.md): skill trigger description and core workflow
@@ -57,16 +75,17 @@ For placement-only requests, it stays narrow:
 - [`codex-prompt-improvement/references/migration-and-audit-checklist.md`](./codex-prompt-improvement/references/migration-and-audit-checklist.md): Responses and harness migration checks
 - [`codex-prompt-improvement/references/output-templates.md`](./codex-prompt-improvement/references/output-templates.md): concise result templates
 
+## Tooling notes
+
+- This skill is local-first, but it supports API-side Codex harness work.
+- Bundled references are helper context, not the source of truth, for volatile OpenAI-specific guidance.
+- When model choice, GPT-5.4 migration, or current API/runtime behavior matters, verify against current OpenAI docs.
+- The skill should stay out of generic writing tasks even when the current repo contains Codex-related docs.
+
 ## Example requests
 
 - `Improve my Codex system prompt so it stops over-explaining and uses tools better.`
 - `Turn this long AGENTS.md into tighter Codex instructions.`
-- `Migrate this GPT-4 agent harness to gpt-5.3-codex on the Responses API.`
+- `Migrate this GPT-4 agent harness to the current Codex model on the Responses API.`
 - `Audit my Codex tool contract and preamble behavior.`
 - `Tell me whether this guidance belongs in prompt, AGENTS.md, or config.`
-
-## Notes
-
-- The skill is local-first, but it supports API-side Codex harness work.
-- Bundled references are helper context, not the source of truth, for volatile OpenAI-specific guidance.
-- When model choice, GPT-5.4 migration, or current API/runtime behavior matters, the skill should defer to current OpenAI docs.
