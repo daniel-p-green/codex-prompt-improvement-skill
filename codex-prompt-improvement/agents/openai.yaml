@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Prompt Improvement"
+  short_description: "Refine Codex prompts and harness guidance"
+  default_prompt: "Use $codex-prompt-improvement to analyze this Codex prompt, AGENTS.md file, or harness snippet, tell me what to keep, move, remove, or fix in config, and verify any model/runtime/API claims against current OpenAI docs before giving the rewritten version."
