@@ -96,6 +96,28 @@ This is often enough to improve reliability without adding a large metaprompt.
 
 When rewriting a vague prompt, prefer returning this structure directly instead of only describing it.
 
+## Output Contracts and Verbosity
+
+GPT-5.4 responds well to compact, explicit output contracts.
+
+- specify the exact sections and order you want
+- keep progress updates brief and outcome-based
+- avoid restating the user's request unless it changes the result
+- do not over-compress the answer so much that verification, evidence, or completion checks disappear
+
+When a prompt is noisy or verbose, prefer a small output-contract block over more style adjectives.
+
+## Follow-Through and Instruction Updates
+
+When modernizing prompts for GPT-5.4, make initiative and override rules explicit:
+
+- proceed without asking when the next step is clear, low-risk, and reversible
+- ask only for irreversible, high-impact, or materially ambiguous actions
+- if the user changes the task mid-thread, make the new scope explicit and local
+- preserve earlier instructions that do not conflict with the new instruction
+
+For prompts that drift across turns, prefer a short task-update block over repeating the whole prompt.
+
 ## Prompt the Full Dev Loop
 
 Many prompt sets over-focus on implementation. When the source material supports it, preserve expectations for:

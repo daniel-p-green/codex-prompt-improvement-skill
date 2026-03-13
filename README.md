@@ -4,6 +4,12 @@ Improve Codex system prompts, `AGENTS.md` files, and Responses-based Codex harne
 
 This repo contains a local-first Codex skill for tightening prompt stacks, separating durable repo rules from task prompts, and auditing Responses integrations for issues like stale model guidance, bad tool contracts, or incorrect `phase` handling. It prefers current OpenAI docs over bundled guidance whenever the answer depends on volatile model or API details.
 
+## GPT-5.4 notes (03-13-2026)
+
+- The skill now explicitly accounts for GPT-5.4 prompt patterns around compact output contracts, follow-through rules, dependency-aware tool use, completeness checks, and lightweight verification loops.
+- GPT-5.4-specific migration guidance in this repo is intentionally narrow: it focuses on prompt shape and runtime contracts, not broad model capability summaries.
+- For current model recommendations or API/runtime details, treat OpenAI docs as the source of truth and use the skill's bundled references only as helper context.
+
 ## Quick start
 
 - Copy or symlink [`codex-prompt-improvement`](./codex-prompt-improvement) into your Codex skills directory.

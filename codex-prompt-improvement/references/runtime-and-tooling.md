@@ -51,6 +51,17 @@ Codex guidance favors planning the needed reads first, then issuing them in para
 - bash scripts used as ad hoc parallelizers instead of the harness's actual parallel tool
 - prompts that say "think first" but do not explain the read-batching workflow
 
+## Dependency Checks and Tool Persistence
+
+GPT-5.4 benefits from explicit dependency rules in tool-heavy workflows.
+
+- require prerequisite lookup or retrieval steps before downstream actions
+- do not skip dependency resolution just because the intended end state seems obvious
+- keep using tools until the task is complete and verification passes
+- if a tool result is empty, partial, or suspiciously narrow, retry with a different strategy before concluding there is nothing there
+
+This is especially useful early in a session when tool routing is still thinly grounded.
+
 ## Worktrees and Parallel Threads
 
 If the product supports worktrees or parallel task threads, prefer operational guidance over prompt bloat.
@@ -93,6 +104,19 @@ The prompt should not carry everything. If the surface supports built-in review 
 - prefer explicit review guidance over vague "be careful" language
 - prefer concrete test and build commands in `AGENTS.md`
 - use review workflows and diff feedback mechanisms instead of stuffing review heuristics into every prompt
+
+## Completeness and Verification Loops
+
+For long-horizon tasks, prompt and runtime guidance should make completion explicit:
+
+- treat the task as incomplete until every requested item is covered or marked blocked
+- track batch, list, or page coverage when scope is knowable
+- label missing-data blockers explicitly instead of silently stopping
+- add a lightweight verification loop before finalizing:
+  - check requirements
+  - check grounding against retrieved context or tool outputs
+  - check format or schema
+  - check whether the next action is irreversible and needs permission
 
 ## What to Remove
 

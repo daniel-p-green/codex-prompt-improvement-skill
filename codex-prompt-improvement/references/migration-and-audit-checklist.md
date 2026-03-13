@@ -13,6 +13,16 @@ For current OpenAI-specific questions such as latest model choice, GPT-5.4 upgra
 - Are repeated operational workflows packaged as skills instead of giant system prompts?
 - Does the setup rely on prompt text where the surface already provides Plan mode, review flows, worktrees, or automations?
 
+## GPT-5.4 Reasoning-Effort Notes
+
+When migrating to GPT-5.4, treat reasoning effort as a last-mile tuning knob, not the first fix.
+
+- start by matching the current reasoning setting when migrating from a newer Codex-capable setup
+- for coding workflows, preserve the current reasoning effort first and run evals before changing it
+- for execution-heavy or latency-sensitive work, start in the none to low range
+- for research-heavy or long-horizon synthesis, start in the medium to high range
+- before increasing reasoning, first tighten the prompt contract, completeness rules, and verification loop
+
 ## `phase` Handling
 
 For long-running or tool-heavy Responses workflows:
