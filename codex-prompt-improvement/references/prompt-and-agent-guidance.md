@@ -26,6 +26,18 @@ Use this checklist before rewriting:
 - Does it say what success looks like?
 - Does it overfit to old models or third-party harness behavior?
 
+## Setup vs Prompt Diagnosis
+
+Before rewriting a prompt, check whether the real problem is environmental:
+
+- wrong working directory
+- missing write access or overly tight approvals
+- missing build, test, lint, or review commands
+- missing MCP connectors or disabled tools
+- poor default model, reasoning, or profile settings
+
+If the issue is mostly setup, fix config or local instructions before adding more prompt text.
+
 ## Placement-First Rule
 
 When the user asks where guidance belongs, answer that directly before drafting anything.
@@ -96,6 +108,8 @@ This is often enough to improve reliability without adding a large metaprompt.
 
 When rewriting a vague prompt, prefer returning this structure directly instead of only describing it.
 
+This frame is also a good fallback when the user asks for a stronger "best practices" prompt without supplying much context.
+
 ## Output Contracts and Verbosity
 
 GPT-5.4 responds well to compact, explicit output contracts.
@@ -139,6 +153,8 @@ When improving Codex usage guidance:
 - avoid base prompts that require a full upfront plan for every task
 - keep plan-specific advice separate from default execution guidance when possible
 
+If the user has a fuzzy goal, recommending that Codex interview them first can be better than forcing a premature rewrite.
+
 ## Surface-Aware Prompting
 
 Codex app, CLI, and IDE share core behavior, but the UX differs. Keep generic prompts surface-neutral unless the target workflow truly depends on:
@@ -157,6 +173,18 @@ Keep `AGENTS.md` lean and durable.
 - move deeper process detail into referenced markdown files when needed
 - update `AGENTS.md` after recurring mistakes or retrospectives
 - use `AGENTS.md` to define verification, review, and repo conventions that should apply across sessions
+
+When the same mistake happens repeatedly, prefer updating `AGENTS.md` over adding another one-off prompt reminder.
+
+## Skills and Automations
+
+Use this split when deciding placement:
+
+- skills define the method for a repeatable workflow
+- automations define the schedule for a workflow that is already reliable manually
+- MCP solves repeated external-context retrieval better than pasted instructions
+
+If a workflow still needs frequent steering, do not recommend automation yet.
 
 ## Routing Before Expansion
 

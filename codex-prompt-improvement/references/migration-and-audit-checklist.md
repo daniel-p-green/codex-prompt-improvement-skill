@@ -13,6 +13,16 @@ For current OpenAI-specific questions such as latest model choice, GPT-5.4 upgra
 - Are repeated operational workflows packaged as skills instead of giant system prompts?
 - Does the setup rely on prompt text where the surface already provides Plan mode, review flows, worktrees, or automations?
 
+## Durable Best-Practice Heuristics
+
+Preserve these ideas when they materially improve the setup:
+
+- use `Goal / Context / Constraints / Done when` when task prompts are vague or underspecified
+- plan first for complex, ambiguous, or high-risk work
+- keep straightforward work in default execution mode instead of forcing plan rituals
+- treat setup problems as config or environment problems before adding prompt text
+- use skills for repeatable methods and automations for stable scheduled work
+
 ## GPT-5.4 Reasoning-Effort Notes
 
 When migrating to GPT-5.4, treat reasoning effort as a last-mile tuning knob, not the first fix.
@@ -85,6 +95,18 @@ For local Codex workflows, audit whether the guidance handles:
 - using worktrees for overlapping parallel tasks
 - keeping one thread per coherent task instead of one giant project thread
 - using Plan mode when the task is complex instead of encoding planning rituals into the default prompt
+
+## Common Mistakes
+
+Flag these when they appear in the source setup:
+
+- overloading the prompt with durable rules that belong in `AGENTS.md`, config, or a skill
+- failing to provide build, test, lint, or verification commands
+- skipping planning on multi-step or ambiguous work
+- loosening permissions before the workflow is understood
+- running overlapping live threads in the same workspace without worktrees
+- automating a workflow before it works reliably by hand
+- keeping one thread per project instead of one thread per coherent task
 
 ## Subtract Before Adding
 
